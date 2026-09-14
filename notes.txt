@@ -1,0 +1,9 @@
+Rock-Paper-Scissors
+hmtl - Balint
+js - Balin
+css - Theodor
+
+Calculator
+html - Balint
+js - Theodor
+css - Balint
