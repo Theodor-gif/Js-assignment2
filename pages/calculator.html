@@ -16,55 +16,61 @@
         <input id="firstScreen" readonly type="text" title="screen" />
         <!-- Second screen to save from '12+5' the '5'-->
         <label for="secondScreen"></label>
-        <input id="secondScreen" readonly type="text" title="screen" />
+        <input
+          id="secondScreen"
+          readonly
+          type="text"
+          title="screen"
+          placeholder="0"
+        />
       </section>
       <!-- Calculator main body // Buttons container -->
       <section id="buttonsContainer">
         <!-- First row buttons container -->
         <div id="firstRowBtns">
-          <button type="button">C</button>
-          <button type="button">
+          <button type="button" onclick="clearScreen()">C</button>
+          <button type="button" onclick="deleteInput()">
             <img
               src="../assets/delete-btn-icon.png"
               alt="delete button"
               width="10"
             />
           </button>
-          <button type="button">
+          <button type="button" onclick="addOperate('/')">
             <img
               src="../assets/divide-btn-icon.png"
               alt="divide button"
               width="10"
             />
           </button>
-          <button type="button">X</button>
+          <button type="button" onclick="addOperate('*')">X</button>
         </div>
         <!-- Second row buttons container -->
         <div id="secondRowBtns">
-          <button type="button">7</button>
-          <button type="button">8</button>
-          <button type="button">9</button>
-          <button type="button">-</button>
+          <button type="button" onclick="addNumber(7)">7</button>
+          <button type="button" onclick="addNumber(8)">8</button>
+          <button type="button" onclick="addNumber(9)">9</button>
+          <button type="button" onclick="addOperate('-')">-</button>
         </div>
         <!-- Third row buttons container -->
         <div id="thirdRowBtns">
-          <button type="button">4</button>
-          <button type="button">5</button>
-          <button type="button">6</button>
-          <button type="button">+</button>
+          <button type="button" onclick="addNumber(4)">4</button>
+          <button type="button" onclick="addNumber(5)">5</button>
+          <button type="button" onclick="addNumber(6)">6</button>
+          <button type="button" onclick="addOperate('+')">+</button>
         </div>
         <!-- Fourth row buttons container -->
         <div id="fourthRowBtns">
-          <button type="button">1</button>
-          <button type="button">2</button>
-          <button type="button">3</button>
-          <button type="button">%</button>
+          <button type="button" onclick="addNumber(1)">1</button>
+          <button type="button" onclick="addNumber(2)">2</button>
+          <button type="button" onclick="addNumber(3)">3</button>
+          <button type="button" onclick="transform()">%</button>
         </div>
         <!-- Fifth row buttons container -->
         <div id="fifthRowBtns">
-          <button type="button">0</button>
-          <button type="button">.</button>
-          <button type="button">=</button>
+          <button type="button" onclick="addNumber(0)">0</button>
+          <button type="button" onclick="addDecimal('.')">.</button>
+          <button type="button" onclick="operate()">=</button>
         </div>
       </section>
     </main>
