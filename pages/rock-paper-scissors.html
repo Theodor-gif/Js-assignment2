@@ -7,21 +7,35 @@
     <link rel="stylesheet" type="text/css" href="../css/app.css" />
     <script src="../js/rock-paper-scissors.js" defer></script>
   </head>
-  <header>
-    <nav class="nav-container">
-      <div class="nav-menu">
-        <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="./calculator.html" class="active">Calculator</a></li>
-          <li>
-            <a href="./rock-paper-scissors.html">Rock-Paper-Scissors</a>
-          </li>
-          <li><a href="./jumping-game.html">Jumping-Game</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <body #rock-paper-scissors>
-    <h1>Rock-Paper-Scissors</h1>
+  <body id="rock-paper-scissors">
+    <header>
+      <nav class="nav-container">
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./calculator.html" class="active">Calculator</a></li>
+            <li>
+              <a href="./rock-paper-scissors.html">Rock-Paper-Scissors</a>
+            </li>
+            <li><a href="./jumping-game.html">Jumping-Game</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <section class="contentArea">
+      <h1>Rock-Paper-Scissors</h1>
+      <article class="interactiveArea">
+        <h2 class="stepTitle warning"></h2>
+        <h4 class="stepDescription"></h4>
+        <button class="stepForward"></button>
+        <h2 class="roundTitle"></h2>
+        <h4 class="roundInstructions"></h4>
+        <div class="roundChoices">
+          <button id="rock"></button>
+          <button id="paper"></button>
+          <button id="scissors"></button>
+        </div>
+      </article>
+    </section>
   </body>
 </html>
