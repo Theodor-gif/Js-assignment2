@@ -4,8 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
+    <script src="../js/calculator.js" defer></script>
   </head>
   <body>
-    <h1>Calculator</h1>
+    <!-- Calculator Body -->
+    <main>
+      <!-- Calculator Screen -->
+      <section id="screensContainer">
+        <!-- First screen to save from '12+5' the '12+'-->
+        <label for="firstScreen"></label>
+        <input id="firstScreen" readonly type="text" title="screen" />
+        <!-- Second screen to save from '12+5' the '5'-->
+        <label for="secondScreen"></label>
+        <input id="secondScreen" readonly type="text" title="screen" />
+      </section>
+      <!-- Calculator main body // Buttons container -->
+      <section id="buttonsContainer">
+        <!-- First row buttons container -->
+        <div id="firstRowBtns">
+          <button type="button">C</button>
+          <button type="button">
+            <img
+              src="../assets/delete-btn-icon.png"
+              alt="delete button"
+              width="10"
+            />
+          </button>
+          <button type="button">
+            <img
+              src="../assets/divide-btn-icon.png"
+              alt="divide button"
+              width="10"
+            />
+          </button>
+          <button type="button">X</button>
+        </div>
+        <!-- Second row buttons container -->
+        <div id="secondRowBtns">
+          <button type="button">7</button>
+          <button type="button">8</button>
+          <button type="button">9</button>
+          <button type="button">-</button>
+        </div>
+        <!-- Third row buttons container -->
+        <div id="thirdRowBtns">
+          <button type="button">4</button>
+          <button type="button">5</button>
+          <button type="button">6</button>
+          <button type="button">+</button>
+        </div>
+        <!-- Fourth row buttons container -->
+        <div id="fourthRowBtns">
+          <button type="button">1</button>
+          <button type="button">2</button>
+          <button type="button">3</button>
+          <button type="button">%</button>
+        </div>
+        <!-- Fifth row buttons container -->
+        <div id="fifthRowBtns">
+          <button type="button">0</button>
+          <button type="button">.</button>
+          <button type="button">=</button>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
