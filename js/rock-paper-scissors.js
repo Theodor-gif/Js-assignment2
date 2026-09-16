@@ -1,5 +1,5 @@
 
-//Global variables
+// Global variables
 
 const roundsToWin = 5;
 let screenCount = 0;
@@ -38,7 +38,7 @@ const roundInstructions = interactiveArea.querySelector(".roundInstructions");
 const roundChoices = interactiveArea.querySelector(".roundChoices");
 const roundButtons = roundChoices.querySelectorAll("button");
 
-//DOM event listeners
+// DOM event listeners
 
 stepForward.addEventListener("click", (e) => {
   loadContent();
@@ -54,7 +54,7 @@ roundButtons.forEach((button) =>
   }),
 );
 
-//Dynamic instruction content
+// Dynamic instruction content
 
 const stepTitles = {
   0: "** Warning **",
@@ -67,10 +67,10 @@ const stepDescriptions = {
 };
 const stepForwardTexts = {
   0: "Start ->",
-  1: "Start ->",
+  1: "Start ----->",
 };
 
-//Game functions
+// Game functions
 
 function game() {
   gameSetup();
