@@ -1,24 +1,41 @@
 function isActivePage() {
   const links = document.querySelectorAll(".nav-links li a");
-  console.log(links);
   const activeLink = [...links].find(
     (link) => link.href === window.location.href,
   );
-  console.log(activeLink);
   activeLink.classList.add("activeLink");
 }
 
 isActivePage();
 
+//Global variables
+
+const roundsToWin = 5;
 let screenCount = 0;
 let round = 0;
 let computers_choice = 0;
 let players_choice = 0;
 let gameOverMessage = "";
-let scores = {
+const scores = {
   player: 0,
   computer: 0,
 };
+const round_info = {
+  isWinner: false,
+  playerWon: false,
+};
+const choiceNumberToString = {
+  0: "rock",
+  1: "paper",
+  2: "scissors",
+};
+const choiceToNumber = {
+  rock: 0,
+  paper: 1,
+  scissors: 2,
+};
+
+// DOM element variables
 
 const interactiveArea = document.querySelector(".interactiveArea");
 const stepTitle = interactiveArea.querySelector(".stepTitle");
@@ -30,23 +47,23 @@ const roundInstructions = interactiveArea.querySelector(".roundInstructions");
 const roundChoices = interactiveArea.querySelector(".roundChoices");
 const roundButtons = roundChoices.querySelectorAll("button");
 
+//DOM event listeners
+
 stepForward.addEventListener("click", (e) => {
-  screenCount += 1;
-  game();
+  loadContent();
 });
 
 roundButtons.forEach((button) =>
   button.addEventListener("click", (e) => {
     players_choice = choiceToNumber[button.textContent];
-    console.log(players_choice, computers_choice);
-    displayRoundOutcome();
-    if (!checkWinner()) {
-      playRound();
-      return;
+    playRound();
+    if (checkWinner()) {
+      alert(gameOverMessage);
     }
-    alert(gameOverMessage);
   }),
 );
+
+//Dynamic instruction content
 
 const stepTitles = {
   0: "** Warning **",
@@ -61,82 +78,106 @@ const stepForwardTexts = {
   0: "Start ->",
   1: "Start ->",
 };
-function loadFirstRound() {
+
+//Game functions
+
+function game() {
+  gameSetup();
   playRound();
-  stepTitle.innerHTML = "";
-  stepDescription.innerHTML = "";
-  interactiveArea.removeChild(stepForward);
-  roundInstructions.innerHTML = `<p>Pick your choice</p>`;
-  roundButtons.forEach((button) => (button.textContent = button.id));
-  roundChoices.style.display = "flex";
-  interactiveArea.style.gap = "60px";
 }
 function playRound() {
   round++;
   computerPlay();
   roundTitle.innerHTML = `Round ${round}`;
-  roundInstructions.innerHTML = `<p>${standings()}</p>`;
-}
-function game() {
-  if (screenCount > 2) {
-    displayRoundOutcome();
+  if (round === 1) {
+    roundInstructions.innerHTML = `<p>Pick your choice</p>`;
     return;
   }
+  calculateRoundOutcome();
+  displayRoundOutcome();
+  roundInstructions.innerHTML = `<p>${standings()}</p>`;
+}
+function loadContent() {
   if (screenCount == 2) {
-    loadFirstRound();
+    game();
     return;
   }
   stepTitle.innerHTML = stepTitles[screenCount];
   stepDescription.innerHTML = stepDescriptions[screenCount];
   stepForward.innerHTML = stepForwardTexts[screenCount];
+  screenCount++;
 }
 
-game();
+loadContent();
 
-const choiceNumberToString = {
-  0: "rock",
-  1: "paper",
-  2: "scissors",
-};
-
-const choiceToNumber = {
-  rock: 0,
-  paper: 1,
-  scissors: 2,
-};
-
-const standings = () => {
-  if (scores.player > scores.computer) {
-    const message = scores.player < 3 ? "You lead " : "You won ";
-    return message + scores.player + "-" + scores.computer + ".";
-  } else if (scores.player < scores.computer) {
-    const message =
-      scores.computer < 3 ? "The computer leads " : "Computer won ";
-    return message + scores.computer + "-" + scores.player + ".";
-  } else {
-    return "You are tied " + scores.player + "-" + scores.player + ".";
-  }
-};
+function gameSetup() {
+  stepTitle.innerHTML = "";
+  stepDescription.innerHTML = "";
+  interactiveArea.removeChild(stepForward);
+  roundButtons.forEach((button) => (button.textContent = button.id));
+  roundChoices.style.display = "flex";
+  interactiveArea.style.gap = "60px";
+}
 
 function computerPlay() {
   computers_choice = Math.floor(Math.random() * 3);
 }
 
-function displayRoundOutcome() {
-  let message = "";
+function calculateRoundOutcome() {
+  round_info.isWinner = true;
   if (computers_choice == players_choice) {
-    alert(
-      `You both picked ${choiceNumberToString[computers_choice]}! Nothing changed.\n\n${standings()}`,
-    );
+    round_info.isWinner = false;
     return;
   } else if (
     computers_choice == players_choice - 1 ||
     computers_choice == players_choice + 2
   ) {
     scores.player++;
-    message = `${roundOutcomeMessage(choiceNumberToString[players_choice], choiceNumberToString[computers_choice])} You won this round. `;
+    round_info.playerWon = true;
   } else {
     scores.computer++;
+    round_info.playerWon = false;
+  }
+}
+function checkWinner() {
+  if (scores.player == roundsToWin) {
+    gameOverMessage =
+      "Congratulations!! \n\nYou defeated me by winning " +
+      roundsToWin +
+      " rounds! \n\nExcellent work!";
+    return true;
+  } else if (scores.computer == roundsToWin) {
+    gameOverMessage =
+      "Congratulations!! \n\nYou let me win to save the world!\n\nYou're a grand strategist!";
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Helper functions
+
+const standings = () => {
+  if (scores.player > scores.computer) {
+    const message = scores.player < roundsToWin ? "You lead " : "You won ";
+    return message + scores.player + "-" + scores.computer;
+  } else if (scores.player < scores.computer) {
+    const message =
+      scores.computer < roundsToWin ? "The computer leads " : "Computer won ";
+    return message + scores.computer + "-" + scores.player;
+  } else {
+    return "You are tied " + scores.player + "-" + scores.player;
+  }
+};
+function displayRoundOutcome() {
+  let message = `You both picked ${choiceNumberToString[computers_choice]}! Nothing changed.\n\n${standings()}`;
+  if (!round_info.isWinner) {
+    alert(message);
+    return;
+  }
+  if (round_info.playerWon) {
+    message = `${roundOutcomeMessage(choiceNumberToString[players_choice], choiceNumberToString[computers_choice])} You won this round. `;
+  } else {
     message = `${roundOutcomeMessage(choiceNumberToString[computers_choice], choiceNumberToString[players_choice])} The computer won this round.`;
   }
   alert(
@@ -149,17 +190,4 @@ function capitalize(word) {
 }
 function roundOutcomeMessage(winningChoice, losingChoice) {
   return `${capitalize(winningChoice)} beats ${losingChoice}.`;
-}
-function checkWinner() {
-  if (scores.player > 2) {
-    gameOverMessage =
-      "Congratulations!! \n\nYou defeated me by winning 3 rounds! \n\nExcellent work!";
-    return true;
-  } else if (scores.computer > 2) {
-    gameOverMessage =
-      "Congratulations!! \n\nYou let me win to save the world!\n\nYou're a grand strategist!";
-    return true;
-  } else {
-    return false;
-  }
 }
