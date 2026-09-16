@@ -149,9 +149,49 @@ header {
   color: red;
 }
 .roundInstructions {
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
 .roundChoices {
   display: none;
   gap: 30px;
+}
+
+.gameWindow {
+  background-color: purple;
+  margin: 160px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.gameCanvas {
+  height: 400px;
+  width: 900px;
+  background-color: black;
+  margin: 50px 0;
+  position: relative;
+}
+
+.gameBase {
+  position: absolute;
+  bottom: 20px;
+  display: block;
+  width: 900px;
+  height: 2px;
+  background-color: white;
+}
+.gameTerrain {
+  position: absolute;
+  bottom: 2px;
+  display: block;
+  width: 900px;
+  height: 16px;
+  background-color: yellow;
+}
+
+.gameBase div {
+  background-color:white;
+}
+.gameTerrain div {
+  background-color:black;
 }
