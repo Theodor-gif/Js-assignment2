@@ -1,0 +1,199 @@
+:root {
+  --nav-background: #faead4;
+  --nav-font: #3882f6;
+  --nav-shadow: #3882f6a2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#index {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+.main-menu {
+  display: flex;
+  grid-row: 2;
+  background-color: var(--nav-background);
+  padding: 100px;
+  width: 100vw;
+  gap: 70px;
+  justify-content: center;
+}
+
+.main-menu a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  background-color: rgba(248, 234, 206, 0.714);
+  padding: 30px 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 5px rgba(157, 157, 157, 0.321);
+}
+
+.main-menu a:hover {
+  transform: scale(1.1);
+  transition: 400ms;
+  background-color: white;
+  box-shadow: 0px 0px 2px 2px var(--nav-shadow);
+  color: var(--nav-font);
+}
+#rock-paper-scissors {
+  background-color: var(--nav-background);
+}
+
+header {
+  background-color: var(--nav-background);
+  color: #f9faf8;
+  position: fixed;
+  height: 80px;
+  width: 100%;
+  z-index: 10;
+  inset: 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: black;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.activeLink {
+  color: #3882f6;
+}
+
+.contentArea {
+  margin: 160px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.interactiveArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.stepTitle {
+  letter-spacing: 2px;
+}
+.stepDescription {
+  text-align: center;
+  max-width: 700px;
+  line-height: 30px;
+}
+.stepDescription p {
+  text-align: justify;
+  margin: 3px 0;
+}
+
+.stepDescription p.evilAI {
+  text-align: center;
+  margin: 3px 0;
+  font-size: 1.3rem;
+  line-height: 36px;
+}
+.stepDescription ul {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  text-align: justify;
+  list-style-type: none;
+}
+
+.stepForward,
+.roundChoices button {
+  cursor: pointer;
+  padding: 15px 30px;
+  font-size: 1.3rem;
+  background-color: rgba(248, 234, 206, 0.714);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 3px rgba(157, 157, 157, 0.321);
+  text-transform: uppercase;
+}
+
+.stepForward:hover,
+.roundChoices button:hover {
+  transition: 400ms;
+  background-color: white;
+  box-shadow: 0px 0px 2px 2px var(--nav-shadow);
+  color: var(--nav-font);
+}
+.warning {
+  color: red;
+}
+.roundInstructions {
+  font-size: 1.5rem;
+  line-height: 40px;
+}
+.roundChoices {
+  display: none;
+  gap: 30px;
+}
+
+.gameWindow {
+  background-color: purple;
+  margin: 160px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.gameCanvas {
+  height: 400px;
+  width: 900px;
+  background-color: black;
+  margin: 50px 0;
+  position: relative;
+}
+
+.gameBase {
+  position: absolute;
+  bottom: 20px;
+  display: block;
+  width: 900px;
+  height: 2px;
+  background-color: white;
+}
+.gameTerrain {
+  position: absolute;
+  bottom: 2px;
+  display: block;
+  width: 900px;
+  height: 16px;
+  background-color: yellow;
+}
+
+.gameBase div {
+  background-color: white;
+}
+.gameTerrain div {
+  background-color: black;
+}
