@@ -1,0 +1,11 @@
+:root {
+  --nav-background: #faead4;
+  --nav-font: #3882f6;
+  --nav-shadow: #3882f6a2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
