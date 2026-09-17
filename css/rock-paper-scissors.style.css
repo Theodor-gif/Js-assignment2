@@ -5,11 +5,7 @@
   --color-accent: rgb(232, 158, 74);
   --color-body-bg: rgb(245, 247, 248);
   --color-text: rgb(30, 30, 30);
-  --color-container-bg: rgb(
-    255,
-    255,
-    255
-  ); /* container bg, distinct from body */
+  --color-container-bg: rgb(255, 255, 255);
 }
 
 * {
@@ -24,7 +20,7 @@ body {
   color: var(--color-text);
 }
 
-/* ===== BASE STYLES (apply to all screen sizes) ===== */
+/* BASE STYLES */
 
 #rock-paper-scissors {
   background-color: rgb(234, 241, 242);
@@ -141,19 +137,7 @@ h1 {
   text-align: center;
 }
 
-/* ===== Mobile Screen ===== */
-
-@media screen and (max-width: 440px) {
-  /* no overrides needed yet — everything shared is in base styles above */
-}
-
-/* ===== Tablet Screen ===== */
-
-@media screen and (min-width: 441px) and (max-width: 768px) {
-  /* no overrides needed yet — everything shared is in base styles above */
-}
-
-/* ===== Desktop Screen ===== */
+/*  Desktop Screen */
 
 @media screen and (min-width: 1025px) {
   .nav-links {
@@ -165,7 +149,7 @@ h1 {
     padding: 20px 0;
     border-right: 2px solid rgb(210, 210, 219);
     flex: 1;
-    border-bottom: none; /* horizontal nav doesn't need the stacked divider */
+    border-bottom: none;
   }
 
   .nav-links > li:last-child {
