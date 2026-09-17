@@ -47,7 +47,23 @@ roundButtons.forEach((button) =>
     players_choice = choiceToNumber[button.textContent];
     playRound();
     if (checkWinner()) {
-      alert(gameOverMessage);
+      screenCount = 0;
+      round = 0;
+      computers_choice = 0;
+      players_choice = 0;
+      roundInstructions.innerHTML = "";
+      roundTitle.innerHTML = "";
+      stepTitle.innerHTML = "Game Over";
+      stepDescription.innerHTML = gameOverMessage;
+      roundInstructions.innerHTML =
+        "Player Score : " +
+        scores.player +
+        " " +
+        "Computer Score : " +
+        scores.computer;
+      roundButtons.forEach((button) => roundChoices.removeChild(button));
+      stepForward.innerHTML = "Restart the Game";
+      interactiveArea.appendChild(stepForward);
     }
   }),
 );
@@ -79,6 +95,8 @@ function loadContent() {
     game();
     return;
   }
+  scores.player = 0;
+  scores.computer = 0;
   stepTitle.innerHTML = stepTitles[screenCount];
   stepDescription.innerHTML = stepDescriptions[screenCount];
   stepForward.innerHTML = stepForwardTexts[screenCount];
@@ -88,6 +106,7 @@ function loadContent() {
 // runs the game setup and initiates the first round
 
 function game() {
+  roundChoices.style.display = "";
   gameSetup();
   playRound();
 }
@@ -114,6 +133,7 @@ function gameSetup() {
   stepTitle.innerHTML = "";
   stepDescription.innerHTML = "";
   interactiveArea.removeChild(stepForward);
+  roundButtons.forEach((button) => roundChoices.appendChild(button));
   roundButtons.forEach((button) => (button.textContent = button.id));
   roundChoices.style.display = "flex";
   interactiveArea.style.gap = "60px";
