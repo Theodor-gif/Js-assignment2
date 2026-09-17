@@ -47,7 +47,7 @@ roundButtons.forEach((button) =>
     players_choice = choiceToNumber[button.textContent];
     playRound();
     if (checkWinner()) {
-      alert(gameOverMessage);
+      return restartGame();
     }
   }),
 );
@@ -62,8 +62,24 @@ const stepTitles = {
 };
 
 const stepDescriptions = {
-  0: "<p class='evilAI'>Hello stranger! I am a bad AI that wants to dominate the world through the game of ROCK, PAPER or SCISSORS! No one will ever stop me unless you or I win three rounds of rock-paper-scissors (yes, if I win that also counts!). <br>Good luck, muuuuahhahhahahahahahahhahaahahahha!</p>",
-  1: "Hello brave human!! <p>I managed to hack into the bad AI but I don't have much time. I can only help you with explaining the rules of rock-paper-scissors I'm not strong enough to wipe the bad AI. Both you and the computer will pick one of the below choices:<ul><li™>- rock</li><li>- paper</li><li>- or scissors.</li></ul<p>The one who's selection trumps the other wins.<span> Rock beats scissors, </span><span>paper beats rock, </span><span>and scissors beat paper.</span> If your pick is identical then nothing happens the game continues without any of you getting score. I hope this helps.</p> <p>Good luck!!</p>",
+  0: "<p class='evilAI'>Hello stranger! I am a bad AI that wants to dominate the world through the game of ROCK, PAPER or SCISSORS! No one will ever stop me unless you or I win three rounds of rock-paper-scissors (yes, if I win that also counts!). <br>Good luck, muuuuahhahhahahahahahah!</p>",
+  1: `
+    <p>Hello brave human!!</p>
+    <p id="second">I managed to hack into the bad AI but I don't have much time. I can only help you with explaining the rules of rock-paper-scissors, I'm not strong enough to wipe the bad AI. Both you and the computer will pick one of the below choices:</p>
+    <ul>
+      <li>Rock</li>
+      <li>Paper</li>
+      <li>Scissors</li>
+    </ul>
+    <p>The one whose selection trumps the other wins.
+      <span>Rock beats scissors, </span>
+      <span>paper beats rock, </span>
+      <span>and scissors beat paper.</span>
+      If your pick is identical then nothing happens, the game continues without either of you scoring.
+      I hope this helps.
+    </p>
+    <p>Good luck!!</p>
+  `,
 };
 const stepForwardTexts = {
   0: "Start ->",
@@ -79,6 +95,11 @@ function loadContent() {
     game();
     return;
   }
+  scores.player = 0;
+  scores.computer = 0;
+  roundChoices.style.display = "none";
+  roundInstructions.innerHTML = "";
+  roundInstructions.style.display = "none";
   stepTitle.innerHTML = stepTitles[screenCount];
   stepDescription.innerHTML = stepDescriptions[screenCount];
   stepForward.innerHTML = stepForwardTexts[screenCount];
@@ -88,6 +109,9 @@ function loadContent() {
 // runs the game setup and initiates the first round
 
 function game() {
+  roundChoices.style.display = "";
+  stepDescription.style.display = "none";
+  roundInstructions.style.display = "";
   gameSetup();
   playRound();
 }
@@ -114,6 +138,7 @@ function gameSetup() {
   stepTitle.innerHTML = "";
   stepDescription.innerHTML = "";
   interactiveArea.removeChild(stepForward);
+  roundButtons.forEach((button) => roundChoices.appendChild(button));
   roundButtons.forEach((button) => (button.textContent = button.id));
   roundChoices.style.display = "flex";
   interactiveArea.style.gap = "60px";
@@ -205,4 +230,27 @@ function capitalize(word) {
 
 function roundOutcomeMessage(winningChoice, losingChoice) {
   return `${capitalize(winningChoice)} beats ${losingChoice}.`;
+}
+
+// When we have a winner end the game with option to restart the game
+
+function restartGame() {
+  stepDescription.style.display = "";
+  screenCount = 0;
+  round = 0;
+  computers_choice = 0;
+  players_choice = 0;
+  roundInstructions.innerHTML = "";
+  roundTitle.innerHTML = "";
+  stepTitle.innerHTML = "Game Over";
+  stepDescription.innerHTML = gameOverMessage;
+  roundInstructions.innerHTML =
+    "Player Score : " +
+    scores.player +
+    " " +
+    "Computer Score : " +
+    scores.computer;
+  roundButtons.forEach((button) => roundChoices.removeChild(button));
+  stepForward.innerHTML = "Restart the Game";
+  stepDescription.insertAdjacentElement("afterend", stepForward); // <-- fixed
 }
