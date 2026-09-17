@@ -47,23 +47,7 @@ roundButtons.forEach((button) =>
     players_choice = choiceToNumber[button.textContent];
     playRound();
     if (checkWinner()) {
-      screenCount = 0;
-      round = 0;
-      computers_choice = 0;
-      players_choice = 0;
-      roundInstructions.innerHTML = "";
-      roundTitle.innerHTML = "";
-      stepTitle.innerHTML = "Game Over";
-      stepDescription.innerHTML = gameOverMessage;
-      roundInstructions.innerHTML =
-        "Player Score : " +
-        scores.player +
-        " " +
-        "Computer Score : " +
-        scores.computer;
-      roundButtons.forEach((button) => roundChoices.removeChild(button));
-      stepForward.innerHTML = "Restart the Game";
-      interactiveArea.appendChild(stepForward);
+      return restartGame();
     }
   }),
 );
@@ -225,4 +209,26 @@ function capitalize(word) {
 
 function roundOutcomeMessage(winningChoice, losingChoice) {
   return `${capitalize(winningChoice)} beats ${losingChoice}.`;
+}
+
+// When we have a winner end the game with option to restart the game
+
+function restartGame() {
+  screenCount = 0;
+  round = 0;
+  computers_choice = 0;
+  players_choice = 0;
+  roundInstructions.innerHTML = "";
+  roundTitle.innerHTML = "";
+  stepTitle.innerHTML = "Game Over";
+  stepDescription.innerHTML = gameOverMessage;
+  roundInstructions.innerHTML =
+    "Player Score : " +
+    scores.player +
+    " " +
+    "Computer Score : " +
+    scores.computer;
+  roundButtons.forEach((button) => roundChoices.removeChild(button));
+  stepForward.innerHTML = "Restart the Game";
+  interactiveArea.appendChild(stepForward);
 }
