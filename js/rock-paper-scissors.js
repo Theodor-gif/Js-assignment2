@@ -1,4 +1,3 @@
-
 // Global variables
 
 const roundsToWin = 5;
@@ -7,10 +6,7 @@ let round = 0;
 let computers_choice = 0;
 let players_choice = 0;
 let gameOverMessage = "";
-const scores = {
-  player: 0,
-  computer: 0,
-};
+const scores = { player: 0, computer: 0 };
 const round_info = {
   isWinner: false,
   playerWon: false,
@@ -40,6 +36,8 @@ const roundButtons = roundChoices.querySelectorAll("button");
 
 // DOM event listeners
 
+// Actions for buttons
+
 stepForward.addEventListener("click", (e) => {
   loadContent();
 });
@@ -55,6 +53,8 @@ roundButtons.forEach((button) =>
 );
 
 // Dynamic instruction content
+
+// the content displayed during the instruction steps
 
 const stepTitles = {
   0: "** Warning **",
@@ -72,22 +72,8 @@ const stepForwardTexts = {
 
 // Game functions
 
-function game() {
-  gameSetup();
-  playRound();
-}
-function playRound() {
-  round++;
-  computerPlay();
-  roundTitle.innerHTML = `Round ${round}`;
-  if (round === 1) {
-    roundInstructions.innerHTML = `<p>Pick your choice</p>`;
-    return;
-  }
-  calculateRoundOutcome();
-  displayRoundOutcome();
-  roundInstructions.innerHTML = `<p>${standings()}</p>`;
-}
+// Creates the first two screens which guides through the player the introduction and onto the game
+
 function loadContent() {
   if (screenCount == 2) {
     game();
@@ -99,7 +85,30 @@ function loadContent() {
   screenCount++;
 }
 
+// runs the game setup and initiates the first round
+
+function game() {
+  gameSetup();
+  playRound();
+}
+
+// runs the round, if its round 1 it doesn't calculate and display standings
+
+function playRound() {
+  round++;
+  computerPlay();
+  roundTitle.innerHTML = `Round ${round}`;
+  if (round === 1) {
+    roundInstructions.innerHTML = `<p>Pick your choice</p>`;
+    return;
+  }
+  calculateRoundOutcome();
+  roundInstructions.innerHTML = displayRoundOutcome();
+}
+
 loadContent();
+
+// sets up the game, removes the introductory screens and adds the game elements to the screen
 
 function gameSetup() {
   stepTitle.innerHTML = "";
@@ -110,9 +119,13 @@ function gameSetup() {
   interactiveArea.style.gap = "60px";
 }
 
+// calculates computer choice
+
 function computerPlay() {
   computers_choice = Math.floor(Math.random() * 3);
 }
+
+// compares the player's and the computer's response and calculates the result
 
 function calculateRoundOutcome() {
   round_info.isWinner = true;
@@ -130,6 +143,9 @@ function calculateRoundOutcome() {
     round_info.playerWon = false;
   }
 }
+
+// checks if someone has reached the score required to win the game
+
 function checkWinner() {
   if (scores.player == roundsToWin) {
     gameOverMessage =
@@ -148,6 +164,8 @@ function checkWinner() {
 
 // Helper functions
 
+// gives back the standings in string depending on who's leading
+
 const standings = () => {
   if (scores.player > scores.computer) {
     const message = scores.player < roundsToWin ? "You lead " : "You won ";
@@ -160,25 +178,31 @@ const standings = () => {
     return "You are tied " + scores.player + "-" + scores.player;
   }
 };
+
+// displays the standings
+
 function displayRoundOutcome() {
-  let message = `You both picked ${choiceNumberToString[computers_choice]}! Nothing changed.\n\n${standings()}`;
+  let message = `<p>You both picked ${choiceNumberToString[computers_choice]}!<br> Nothing changed.<br>${standings()}.</p>`;
   if (!round_info.isWinner) {
-    alert(message);
-    return;
+    return message;
   }
   if (round_info.playerWon) {
-    message = `${roundOutcomeMessage(choiceNumberToString[players_choice], choiceNumberToString[computers_choice])} You won this round. `;
+    message = `${roundOutcomeMessage(choiceNumberToString[players_choice], choiceNumberToString[computers_choice])}<br> You won this round. `;
   } else {
-    message = `${roundOutcomeMessage(choiceNumberToString[computers_choice], choiceNumberToString[players_choice])} The computer won this round.`;
+    message = `${roundOutcomeMessage(choiceNumberToString[computers_choice], choiceNumberToString[players_choice])}<br> The computer won this round.`;
   }
-  alert(
-    `The computer's choice was ${choiceNumberToString[computers_choice]}.\n\n${message}\n\n${standings()}`,
-  );
-  return;
+
+  return `<p>The computer's choice was ${choiceNumberToString[computers_choice]}.<br>${message}<br>${standings()}.</p>`;
 }
+
+// capitalizes word
+
 function capitalize(word) {
   return word[0].toUpperCase() + word.slice(1);
 }
+
+// generates the message for the round outcome depending on who won
+
 function roundOutcomeMessage(winningChoice, losingChoice) {
   return `${capitalize(winningChoice)} beats ${losingChoice}.`;
 }
