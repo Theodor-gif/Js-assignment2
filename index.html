@@ -4,13 +4,163 @@
     <meta charset="utf-8" />
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <link rel="stylesheet" type="text/css" href="css/home.style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito:400,600|Raleway:400,600"
+    />
   </head>
   <body id="index">
-    <section class="main-menu">
-      <a href="./pages/calculator.html">Calculator</a>
-      <a href="./pages/rock-paper-scissors.html">Rock-Paper-Scissors</a>
-      <a href="./pages/jumping-game.html">Jumping-Game</a>
+    <section class="who-we-are">
+      <h1>Who we are?</h1>
+      <div class="personal-cards">
+        <div class="personal-card">
+          <picture class="card-picture"
+            ><img class="theodor" src="assets/theodor.jpg"
+          /></picture>
+          <article class="card-information">
+            <div class="card-header">
+              <h3>Theodoros Mitropoulos</h3>
+              <address>
+                <img class="icon" src="assets/location.png" /><span
+                  class="header-subtitle"
+                  >Amsterdam,The Netherlands</span
+                ><img class="icon" src="assets/briefcase.png" /><span
+                  class="header-subtitle"
+                  >Happy Workshop</span
+                >
+              </address>
+            </div>
+            <p>
+              Junior Full-Stack Developer (MERN) currently pursuing a role as a
+              Frontend Developer. I found a genuine passion for coding and
+              software development, and I love turning ideas into clean,
+              functional user interfaces.
+            </p>
+            <ul class="horizontal-list">
+              <li class="skill">Object-Oriented Programming (OOP)</li>
+              <li class="skill">JWT/Authentication</li>
+              <li class="skill">REST APIs</li>
+              <li class="skill">HTML5</li>
+              <li class="skill">CSS</li>
+              <li class="skill">Node.js</li>
+              <li class="skill">JavaScript</li>
+              <li class="skill">MongoDB</li>
+              <li class="skill">Express.js</li>
+              <li class="skill">React.js</li>
+            </ul>
+            <div class="card-footer">
+              <span class="get-in-touch">Get in touch</span>
+              <ul class="horizontal-list">
+                <a href="https://www.linkedin.com/in/theodoros-webdeveloper/"
+                  ><img class="icon" src="assets/linkedin.png"
+                /></a>
+                <a href="mailto:theodor.mitropoulos@yahoo.com"
+                  ><img class="icon" src="assets/gmail.png"
+                /></a>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <div class="personal-card">
+          <picture class="card-picture"
+            ><img src="assets/balint.jpeg"
+          /></picture>
+          <article class="card-information">
+            <div class="card-header">
+              <h3>Balint Vargha</h3>
+              <address>
+                <img class="icon" src="assets/location.png" /><span
+                  class="header-subtitle"
+                  >Budapest,Hungary</span
+                ><img class="icon" src="assets/briefcase.png" /><span
+                  class="header-subtitle"
+                  >Happy Workshop</span
+                >
+              </address>
+            </div>
+            <p>
+              Worked as a full stack developer for Ads Interactive Ltd. for
+              almost 4 years where developed minor and major features for a
+              complex information system and also took part in the
+              implementation of a Prebid Server.
+            </p>
+
+            <ul class="horizontal-list">
+              <li class="skill">HTML</li>
+              <li class="skill">CSS</li>
+              <li class="skill">Javascript</li>
+              <li class="skill">Typescript</li>
+              <li class="skill">VueJs</li>
+              <li class="skill">NuxtJs</li>
+              <li class="skill">PHP</li>
+              <li class="skill">Laravel</li>
+              <li class="skill">Golang</li>
+              <li class="skill">Docker</li>
+              <li class="skill">Kubernetes</li>
+              <li class="skill">Mysql</li>
+              <li class="skill">PosgreSQL</li>
+              <li class="skill">Redis</li>
+            </ul>
+            <div class="card-footer">
+              <span class="get-in-touch">Get in touch</span>
+              <ul class="horizontal-list">
+                <a href="https://www.linkedin.com/in/bálint-vargha-785854396/"
+                  ><img class="icon" src="assets/linkedin.png"
+                /></a>
+                <a href="mailto:varghabalint@gmail.com"
+                  ><img class="icon" src="assets/gmail.png"
+                /></a>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="whats-on-the-page">
+      <div class="whats-on-the-page-banner">
+        <h1>What can you find on this page?</h1>
+        <p>
+          You can find a
+          <span class="accent">Calculator web application</span> and a
+          <span class="accent">Rock Paper Scissors browser-based game</span>
+          both prepared for the final assignment for Mayerfeld Consulting's
+          AI-Assisted Front End Development Course.
+        </p>
+      </div>
+      <div class="app-cards">
+        <div class="app-card">
+          <picture class="app-card-picture"
+            ><img src="assets/rpsImage.png"
+          /></picture>
+          <article class="app-card-information">
+            <div class="app-card-header">
+              <h3>Rock Paper Scissors</h3>
+              <p class="app-card-description">
+                Simple game where you compete against the computer.
+              </p>
+            </div>
+            <a href="pages/rock-paper-scissors.html" class="app-card-action"
+              >Try</a
+            >
+          </article>
+        </div>
+
+        <div class="app-card">
+          <picture class="app-card-picture"
+            ><img src="assets/calculatorImage.jpg"
+          /></picture>
+          <article class="app-card-information">
+            <div class="app-card-header">
+              <h3>Calculator</h3>
+              <p class="app-card-description">
+                Calculator application to perform basic mathematic operations.
+              </p>
+            </div>
+            <a href="pages/calculator.html" class="app-card-action">Try</a>
+          </article>
+        </div>
+      </div>
     </section>
   </body>
 </html>
