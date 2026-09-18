@@ -7,3 +7,8 @@ Calculator
 html - Balint
 js - Theodor
 css - Balint
+
+Home page - Balint
+Home page css - Balint
+
+README.md - Theodor
