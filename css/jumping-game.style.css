@@ -1,117 +1,100 @@
-
-header {
-  background-color: var(--nav-background);
-  color: #f9faf8;
-  position: fixed;
-  height: 80px;
-  width: 100%;
-  z-index: 10;
-  inset: 0;
+:root {
+  --color-primary: rgb(17, 74, 91);
+  --color-primary-dark: rgb(10, 48, 60);
+  --color-primary-light: rgb(42, 122, 145);
+  --color-accent: rgb(232, 158, 74);
+  --color-body-bg: rgb(245, 247, 248);
+  --color-text: rgb(30, 30, 30);
+  --color-container-bg: rgb(255, 255, 255);
 }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem 2rem;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Fredoka", sans-serif;
 }
+
+body {
+  overflow-y: hidden;
+}
+
+/* START NAVBAR */
 
 .nav-links {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  color: black;
-  font-size: 18px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover,
-.nav-links a.activeLink {
-  color: #3882f6;
-}
-
-.contentArea {
-  margin: 160px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
-}
-
-.interactiveArea {
+  width: 100%;
+  background-color: var(--color-primary);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-}
-.stepTitle {
-  letter-spacing: 2px;
-}
-.stepDescription {
-  text-align: center;
-  max-width: 700px;
-  line-height: 30px;
-}
-.stepDescription p {
-  text-align: justify;
-  margin: 3px 0;
 }
 
-.stepDescription p.evilAI {
+.nav-links > li {
+  border-bottom: 2px solid rgb(210, 210, 219);
+  width: 100%;
   text-align: center;
-  margin: 3px 0;
-  font-size: 1.3rem;
-  line-height: 36px;
-}
-.stepDescription ul {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  text-align: justify;
-  list-style-type: none;
-}
-
-.stepForward,
-.roundChoices button {
+  padding: 10px 0;
+  transition: 0.6s;
   cursor: pointer;
-  padding: 15px 30px;
-  font-size: 1.3rem;
-  background-color: rgba(248, 234, 206, 0.714);
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px 3px rgba(157, 157, 157, 0.321);
-  text-transform: uppercase;
 }
 
-.stepForward:hover,
-.roundChoices button:hover {
-  transition: 400ms;
-  background-color: white;
-  box-shadow: 0px 0px 2px 2px var(--nav-shadow);
-  color: var(--nav-font);
+.nav-links > li > a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
 }
-.warning {
-  color: red;
+
+.nav-links > li:hover {
+  background-color: var(--color-primary-light);
 }
-.roundInstructions {
-  font-size: 1.5rem;
-  line-height: 40px;
+
+/* END NAVBAR */
+
+/* START GAME INFO */
+
+#game-title {
+  margin-top: 70px;
+  color: white;
+  border-bottom: 5px solid var(--color-primary);
+  width: 40vw;
+  text-align: center;
+  padding-bottom: 10px;
 }
-.roundChoices {
-  display: none;
-  gap: 30px;
+
+#info-board {
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1.2rem;
 }
+
+#lifes-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#score-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* END GAME INFO */
+
+/* START GAME DISPLAY */
 
 .gameWindow {
-  background-color: purple;
-  margin: 160px auto;
+  background-color: rgb(157, 176, 189);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,32 +103,132 @@ header {
 .gameCanvas {
   height: 400px;
   width: 900px;
-  background-color: black;
+  border-radius: 20px;
+  box-shadow: 5px 3px 20px rgb(17, 74, 91);
+  background-image: url("../assets/game-background-image.png");
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
   margin: 50px 0;
   position: relative;
 }
 
+#starting-board {
+  border: 5px solid rgb(129, 151, 166);
+  width: 50%;
+  margin: 50px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(178, 196, 208);
+}
+
+#greeting-text {
+  color: white;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+#guide-text1 {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+#guide-text2 {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+#start-btn {
+  margin: 50px 0 30px 0;
+  background-color: var(--color-accent);
+  padding: 9px 19px;
+  border: none;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  color: var(--color-body-bg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#start-btn:hover {
+  background-color: rgb(180, 127, 30);
+}
+
+#player {
+  position: absolute;
+  bottom: 11px;
+  left: 40px;
+}
+
+#player > img {
+  width: 100px;
+  height: 80px;
+}
+
 .gameBase {
   position: absolute;
-  bottom: 20px;
+  bottom: 15px;
   display: block;
   width: 900px;
   height: 2px;
-  background-color: white;
+  background-color: rgb(140, 91, 22);
 }
 .gameTerrain {
   position: absolute;
-  bottom: 2px;
+  bottom: 0;
   display: block;
   width: 900px;
   height: 16px;
-  background-color: yellow;
+  background-color: rgb(124, 186, 67);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-.gameBase div {
-  background-color: white;
-}
 .gameTerrain div {
-  background-color: black;
+  background-color: rgb(136, 27, 27);
+  height: 200px;
 }
 
+#control-container {
+  width: 40vw;
+  display: none;
+}
+
+.btn-container {
+  background-color: transparent;
+  flex: 1;
+  border: none;
+}
+
+.btn-image {
+  width: 50px;
+  cursor: pointer;
+}
+
+#end-game-board {
+  display: none;
+}
+
+/* END GAME DISPLAY */
+
+@media screen and (min-width: 1025px) {
+  .nav-links {
+    flex-direction: row;
+  }
+
+  .nav-links > li {
+    list-style: none;
+    padding: 20px 0;
+    border-right: 2px solid rgb(210, 210, 219);
+    flex: 1;
+    border-bottom: none;
+  }
+
+  .nav-links > li:last-child {
+    border: none;
+  }
+}

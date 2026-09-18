@@ -28,10 +28,63 @@
       </nav>
     </header>
     <section class="gameWindow">
-      <h1>Jumping Game</h1>
+      <h1 id="game-title">Jumping Game</h1>
+      <div id="info-board">
+        <div id="lifes-container">
+          <h3>Lives :</h3>
+          <p id="lives"></p>
+        </div>
+        <div id="score-container">
+          <h3>Score :</h3>
+          <p id="score"></p>
+        </div>
+      </div>
+      <div id="end-game-board">
+        <h3>GAME OVER</h3>
+        <p>Final Score</p>
+        <p>0</p>
+        <button type="button">RESTART GAME</button>
+      </div>
       <div class="gameCanvas">
+        <div id="starting-board">
+          <h2 id="greeting-text">Welcome to the Jumping Game</h2>
+          <p id="guide-text1">
+            The rule is simple, you need to jump to avoid the trees.
+          </p>
+          <p id="guide-text2">
+            To jump you need to press the space-bar button.
+          </p>
+          <button id="start-btn" type="button" onclick="startGame()">
+            START
+          </button>
+        </div>
+        <div id="player"><img src="../assets/player.png" /></div>
         <div class="gameBase"></div>
         <div class="gameTerrain"></div>
+      </div>
+      <div id="control-container">
+        <button
+          id="resume-btn-container"
+          class="btn-container"
+          onclick="startGame()"
+        >
+          <img
+            id="resume-btn"
+            class="btn-image"
+            src="../assets/play-button-icon.png"
+          />
+        </button>
+        <button
+          id="pause-btn-container"
+          class="btn-container"
+          onclick="pauseGame()"
+        >
+          <img
+            id="pause-btn"
+            class="btn-image"
+            src="../assets/pause-button-icon.png"
+          />
+        </button>
       </div>
     </section>
   </body>
