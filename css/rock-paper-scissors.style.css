@@ -49,6 +49,7 @@ body {
   text-decoration: none;
   color: white;
   font-size: 1.1rem;
+  padding:3px;
 }
 
 .nav-links > li:hover {
@@ -129,7 +130,7 @@ h1 {
   align-items: center;
   padding: 20px;
   width: 80%;
-  min-height: 130px;
+  min-height: 135px;
   line-height: 20px;
   border-radius: 20px;
   box-shadow: 3px 2px 8px rgb(71, 95, 101, 0.5);
@@ -137,6 +138,13 @@ h1 {
   text-align: center;
 }
 
+.playOptions {
+  list-style-type: none;
+}
+.activeLink {
+  border-bottom: none;
+  border-left: 3px solid #517eb8;
+}
 /*  Desktop Screen */
 
 @media screen and (min-width: 1025px) {
@@ -146,7 +154,7 @@ h1 {
 
   .nav-links > li {
     list-style: none;
-    padding: 20px 0;
+    padding: 20px;
     border-right: 2px solid rgb(210, 210, 219);
     flex: 1;
     border-bottom: none;
@@ -163,5 +171,9 @@ h1 {
     border-radius: 20px;
     box-shadow: 3px 2px 12px rgba(71, 95, 101, 0.3);
     padding: 40px;
+  }
+  .activeLink {
+    border-bottom: 3px solid #517eb8;
+    border-left:none;
   }
 }

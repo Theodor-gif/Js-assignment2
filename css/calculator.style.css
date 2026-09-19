@@ -8,6 +8,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Fredoka", sans-serif;
 }
 html {
   background-color: var(--background);
@@ -39,6 +40,7 @@ body {
   text-decoration: none;
   color: white;
   font-size: 1.1rem;
+  padding:3px;
 }
 
 .nav-links > li:hover {
@@ -138,6 +140,10 @@ img.grayImage {
   width: 18px;
 }
 
+.activeLink {
+  border-left: 3px solid #517eb8;
+  border-bottom: none;
+}
 @media (max-width: 768px) {
   body {
     gap: 10vh;
@@ -189,5 +195,10 @@ img.grayImage {
 
   .nav-links > li:last-child {
     border: none;
+  }
+
+  .activeLink {
+    border-bottom: 3px solid #517eb8;
+    border-left: none;
   }
 }

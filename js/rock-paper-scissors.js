@@ -39,6 +39,7 @@ const roundButtons = roundChoices.querySelectorAll("button");
 // Actions for buttons
 
 stepForward.addEventListener("click", (e) => {
+  console.log(screenCount)
   loadContent();
 });
 
@@ -47,7 +48,8 @@ roundButtons.forEach((button) =>
     players_choice = choiceToNumber[button.textContent];
     playRound();
     if (checkWinner()) {
-      return restartGame();
+        interactiveArea.style.gap = "30px";
+      restartGame();
     }
   }),
 );
@@ -66,7 +68,7 @@ const stepDescriptions = {
   1: `
     <p>Hello brave human!!</p>
     <p id="second">I managed to hack into the bad AI but I don't have much time. I can only help you with explaining the rules of rock-paper-scissors, I'm not strong enough to wipe the bad AI. Both you and the computer will pick one of the below choices:</p>
-    <ul>
+    <ul class="playOptions">
       <li>Rock</li>
       <li>Paper</li>
       <li>Scissors</li>
@@ -141,7 +143,8 @@ function gameSetup() {
   roundButtons.forEach((button) => roundChoices.appendChild(button));
   roundButtons.forEach((button) => (button.textContent = button.id));
   roundChoices.style.display = "flex";
-  interactiveArea.style.gap = "60px";
+  interactiveArea.style.gap = "30px";
+  stepTitle.style.paddingTop = "40px";
 }
 
 // calculates computer choice
@@ -234,12 +237,13 @@ function roundOutcomeMessage(winningChoice, losingChoice) {
 
 // When we have a winner end the game with option to restart the game
 
-function restartGame() {
+function restartGame() {  
   stepDescription.style.display = "";
-  screenCount = 0;
   round = 0;
   computers_choice = 0;
   players_choice = 0;
+  scores.player = 0;
+  scores.computer = 0;
   roundInstructions.innerHTML = "";
   roundTitle.innerHTML = "";
   stepTitle.innerHTML = "Game Over";
@@ -251,6 +255,7 @@ function restartGame() {
     "Computer Score : " +
     scores.computer;
   roundButtons.forEach((button) => roundChoices.removeChild(button));
+  roundTitle.style.display = "none";
   stepForward.innerHTML = "Restart the Game";
   stepDescription.insertAdjacentElement("afterend", stepForward); // <-- fixed
 }
